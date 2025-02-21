@@ -55,15 +55,17 @@ async function login() {
 }
 
 function updateStatus() {
-  const currentStatus = statusMessages[currentStatusIndex];
-  const currentType = statusTypes[currentTypeIndex];
+  const currentStatus = "Streaming Flexia Lab 💜"; // สถานะที่ต้องการตั้ง
+  const currentType = "online"; // สถานะ online, dnd, idle
   client.user.setPresence({
-    activities: [{ name: currentStatus, type: ActivityType.Custom }],
+    activities: [{
+      name: currentStatus,
+      type: ActivityType.Streaming,
+      url: 'https://www.twitch.tv/veiinne/home'
+    }],
     status: currentType,
   });
   console.log('\x1b[33m[ STATUS ]\x1b[0m', `Updated status to: ${currentStatus} (${currentType})`);
-  currentStatusIndex = (currentStatusIndex + 1) % statusMessages.length;
-  currentTypeIndex = (currentTypeIndex + 1) % statusTypes.length;
 }
 
 function heartbeat() {
@@ -75,7 +77,6 @@ function heartbeat() {
 client.once('ready', () => {
   console.log('\x1b[36m[ INFO ]\x1b[0m', `\x1b[34mPing: ${client.ws.ping} ms \x1b[0m`);
   updateStatus();
-  setInterval(updateStatus, 10000);
   heartbeat();
 });
 
