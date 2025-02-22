@@ -37,10 +37,22 @@ app.listen(port, () => {
   console.log('\x1b[36m[ SERVER ]\x1b[0m', '\x1b[32m SH : http://localhost:' + port + ' ✅\x1b[0m');
 });
 
-const statusMessages = ["🎧 Listening to Spotify", "🎮 Playing VALORANT"];
-const statusTypes = [ 'dnd', 'idle'];
-let currentStatusIndex = 0;
-let currentTypeIndex = 0;
+// ฟังก์ชันอัปเดตสถานะแบบเรียลไทม์
+function updateStatus() {
+  const currentTime = new Date().toLocaleTimeString('th-TH', { hour12: false }); // เวลาปัจจุบัน
+  const statusMessage = `𝐅𝐥𝐞𝐱𝐢𝐚\n📅 ꒷꒦ ${currentTime} ꒷꒦`; // ข้อความสถานะ
+  
+  client.user.setPresence({
+    activities: [{
+      name: statusMessage,
+      type: ActivityType.Streaming,
+      url: 'https://www.twitch.tv/veiinne/home'
+    }],
+    status: 'online',
+  });
+
+  console.log('\x1b[33m[ STATUS ]\x1b[0m', `Updated status to: ${statusMessage}`);
+}
 
 async function login() {
   try {
@@ -54,29 +66,16 @@ async function login() {
   }
 }
 
-function updateStatus() {
-  const currentStatus = "Streaming Flexia Lab 💜"; // สถานะที่ต้องการตั้ง
-  const currentType = "online"; // สถานะ online, dnd, idle
-  client.user.setPresence({
-    activities: [{
-      name: currentStatus,
-      type: ActivityType.Streaming,
-      url: 'https://www.twitch.tv/veiinne/home'
-    }],
-    status: currentType,
-  });
-  console.log('\x1b[33m[ STATUS ]\x1b[0m', `Updated status to: ${currentStatus} (${currentType})`);
-}
-
 function heartbeat() {
   setInterval(() => {
-    console.log('\x1b[35m[ HEARTBEAT ]\x1b[0m', `Bot is alive at ${new Date().toLocaleTimeString()}`);
+    console.log('\x1b[35m[ HEARTBEAT ]\x1b[0m', `Bot is alive at ${new Date().toLocaleTimeString('th-TH')}`);
   }, 30000);
 }
 
 client.once('ready', () => {
   console.log('\x1b[36m[ INFO ]\x1b[0m', `\x1b[34mPing: ${client.ws.ping} ms \x1b[0m`);
-  updateStatus();
+  updateStatus(); // อัปเดตสถานะครั้งแรก
+  setInterval(updateStatus, 60000); // อัปเดตทุก 60 วินาที (1 นาที)
   heartbeat();
 });
 
