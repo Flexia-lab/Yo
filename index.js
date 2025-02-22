@@ -47,7 +47,7 @@ function updateStatus() {
     activities: [{
       name: statusMessage,
       type: ActivityType.Streaming,
-      url: 'https://m.twitch.tv/veiinne/home'
+      url: 'https://www.twitch.tv/veiinne/home'
     }],
     status: 'online',
   });
