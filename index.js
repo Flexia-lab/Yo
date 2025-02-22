@@ -51,20 +51,6 @@ function updateStatus() {
     }],
     status: 'online',
   });
-  
-  const { SlashCommandBuilder } = require('discord.js');
-
-client.on("ready", async () => {
-  console.log(`✅ Logged in as ${client.user.tag}`);
-
-  const commandData = new SlashCommandBuilder()
-    .setName("say")
-    .setDescription("ให้บอทส่งข้อความไปที่ #panel")
-    .addStringOption(option => 
-      option.setName("message")
-      .setDescription("ข้อความที่ต้องการให้บอทพูด")
-      .setRequired(true)
-    );
 
   console.log('\x1b[33m[ STATUS ]\x1b[0m', `Updated status to: ${statusMessage}`);
 }
