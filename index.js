@@ -39,8 +39,9 @@ app.listen(port, () => {
 
 // ฟังก์ชันอัปเดตสถานะแบบเรียลไทม์
 function updateStatus() {
-  const currentTime = new Date().toLocaleTimeString('th-TH', { hour12: false }); // เวลาปัจจุบัน
-  const statusMessage = `𝐅𝐥𝐞𝐱𝐢𝐚\n📆 ꒷꒦ ${currentTime} ꒷꒦`; // ข้อความสถานะ
+  const now = new Date();
+  const formattedDate = now.toLocaleDateString('th-TH', { day: 'numeric', month: 'numeric', year: 'numeric' }).replace(/\//g, ' | '); // แปลงวันที่เป็น D | M | Y
+  const statusMessage = `𝐅𝐥𝐞𝐱𝐢𝐚\n📆 ꒷꒦ ${formattedDate} ꒷꒦`; // ข้อความสถานะ
   
   client.user.setPresence({
     activities: [{
