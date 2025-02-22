@@ -66,32 +66,6 @@ client.on("ready", async () => {
       .setRequired(true)
     );
 
-  const guild = client.guilds.cache.first();
-  if (guild) {
-    await guild.commands.create(commandData);
-    console.log("✅ ลงทะเบียนคำสั่ง /say แล้ว!");
-  }
-});
-
-client.on("interactionCreate", async (interaction) => {
-  if (!interaction.isChatInputCommand()) return;
-
-  if (interaction.commandName === "say") {
-    const text = interaction.options.getString("message");
-
-    const panelChannel = interaction.guild.channels.cache.find(
-      (ch) => ch.name === "panel"
-    );
-
-    if (!panelChannel) {
-      return interaction.reply("❌ ไม่พบช่องที่ชื่อ `panel` ในเซิร์ฟเวอร์!");
-    }
-
-    panelChannel.send(text);
-    await interaction.reply({ content: "✅ ส่งข้อความไปที่ #panel แล้ว!", ephemeral: true });
-  }
-});
-
   console.log('\x1b[33m[ STATUS ]\x1b[0m', `Updated status to: ${statusMessage}`);
 }
 
