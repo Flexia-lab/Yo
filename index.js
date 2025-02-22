@@ -40,7 +40,7 @@ app.listen(port, () => {
 // ฟังก์ชันอัปเดตสถานะแบบเรียลไทม์
 function updateStatus() {
   const currentTime = new Date().toLocaleTimeString('th-TH', { hour12: false }); // เวลาปัจจุบัน
-  const statusMessage = `𝐅𝐥𝐞𝐱𝐢𝐚\n📅 ꒷꒦ ${currentTime} ꒷꒦`; // ข้อความสถานะ
+  const statusMessage = `𝐅𝐥𝐞𝐱𝐢𝐚\n📆 ꒷꒦ ${currentTime} ꒷꒦`; // ข้อความสถานะ
   
   client.user.setPresence({
     activities: [{
