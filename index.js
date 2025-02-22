@@ -42,7 +42,6 @@ function updateStatus() {
   const now = new Date();
   const formattedDate = now.toLocaleDateString('th-TH', { day: 'numeric', month: 'numeric', year: 'numeric' }).replace(/\//g, ' | '); // แปลงวันที่เป็น D | M | Y
   const statusMessage = `૮꒰ 𝐅𝐥𝐞𝐱𝐢𝐚 ꒱ა\n📆 ꒷꒦ ${formattedDate} ꒷꒦\n discord.gg/E6ynK4r7WA`; // ข้อความสถานะ
-  const streamImageURL = 'https://cdn.discordapp.com/attachments/1337044208539668490/1342790934697345054/104_20250222152350.png?ex=67baeb02&is=67b99982&hm=788a45f517160a8088a7d52e41ef00c412d903989c29e2e0338a03bec451224f&';
   
   client.user.setPresence({
     activities: [{
