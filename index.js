@@ -41,7 +41,7 @@ app.listen(port, () => {
 function updateStatus() {
   const now = new Date();
   const formattedDate = now.toLocaleDateString('th-TH', { day: 'numeric', month: 'numeric', year: 'numeric' }).replace(/\//g, ' | '); // แปลงวันที่เป็น D | M | Y
-  const statusMessage = `𝐅𝐥𝐞𝐱𝐢𝐚\n📆 ꒷꒦ ${formattedDate} ꒷꒦\n discord.gg/E6ynK4r7WA`; // ข้อความสถานะ
+  const statusMessage = `૮꒰ 𝐅𝐥𝐞𝐱𝐢𝐚 ꒱ა\n📆 ꒷꒦ ${formattedDate} ꒷꒦\n discord.gg/E6ynK4r7WA`; // ข้อความสถานะ
   
   client.user.setPresence({
     activities: [{
